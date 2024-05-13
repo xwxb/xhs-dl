@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Gallery</title>
+    <style>
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .image-container img {
+            margin: 10px;
+            max-width: 200px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="image-container">
+    {{range .}}
+    <img src="{{.}}" alt="Image">
+    {{end}}
+</div>
+</body>
+</html>

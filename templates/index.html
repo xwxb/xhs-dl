@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirector</title>
+</head>
+<body>
+<input type="text" id="url" placeholder="Enter parameter">
+<button id="button">Go</button>
+
+<script>
+    document.getElementById('button').addEventListener('click', function() {
+        var param = document.getElementById('url').value;
+        window.location.href = '/webui/result?orig=' + encodeURIComponent(param);
+    });
+</script>
+</body>
+</html>

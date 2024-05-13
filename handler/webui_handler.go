@@ -5,10 +5,12 @@ import (
 	"github.com/xwxb/xhs-dl/pkg/parse"
 )
 
-func Parse(c *gin.Context) {
+func WebUIIndex(c *gin.Context) {
+	c.HTML(200, "index.html", nil)
+}
+
+func ParseResultHtml(c *gin.Context) {
 	url := c.Query("orig")
 	imageUrls := parse.Scrape(url)
-	c.JSON(200, gin.H{
-		"imageUrls": imageUrls,
-	})
+	c.HTML(200, "result.html", imageUrls)
 }

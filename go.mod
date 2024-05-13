@@ -1,4 +1,4 @@
-module xhs-dl
+module github.com/xwxb/xhs-dl
 
 go 1.22.0
 
