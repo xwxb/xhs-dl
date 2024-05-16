@@ -4,10 +4,9 @@
 name: Go
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  create:
+    tags:
+      - 'v*'
 
 jobs:
 
@@ -22,7 +21,12 @@ jobs:
         go-version: '1.20'
 
     - name: Build
-      run: go build -v ./...
+      run: go build
 
-    - name: Test
-      run: go test -v ./...
+    env:
+      GITHUB_TOKEN: ${{ secrets.PAT_CDC_GA }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./
+        asset_name: xhs-dl
+        asset_content_type: application/octet-stream
