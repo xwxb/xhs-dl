@@ -24,6 +24,7 @@ jobs:
       run: go build
     
     - name: Create Release
+      id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_CDC_GA }}
