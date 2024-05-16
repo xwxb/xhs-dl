@@ -40,6 +40,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.PAT_CDC_GA }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./
+        asset_path: ./xhs-dl
         asset_name: xhs-dl
         asset_content_type: application/octet-stream
