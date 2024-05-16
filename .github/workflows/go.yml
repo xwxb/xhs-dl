@@ -4,9 +4,9 @@
 name: Go
 
 on:
-  push:
-    branches:
-      - main
+  create:
+    tags:
+      - v*
   
 jobs:
 
