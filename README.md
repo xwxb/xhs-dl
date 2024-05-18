@@ -1,9 +1,16 @@
 目前是一个简易小红书图片解析 api（去水印），同时提供一个简易的 webui 来调用
 
+api
 ```
 baseurl/api/v1/parse?orig=
 baseurl/webui
 baseurl/webui/result?orig=
+```
+
+参数
+```
+-port / --port [port]
+
 ```
 
 由于实际上不用太多爬虫技术，倒是更可能需要批量下载图片的功能，所以选择go

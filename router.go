@@ -6,9 +6,12 @@ import (
 )
 
 func initRouters(r *gin.Engine) {
+	r.GET("/webui", handler.WebUIIndex)
 	webui := r.Group("/webui")
 	{
-		webui.GET("/", handler.WebUIIndex)
+		webui.GET("/", func(c *gin.Context) {
+			c.Redirect(301, "/webui")
+		})
 		webui.GET("/index.html", handler.WebUIIndex)
 		webui.GET("/result", handler.ParseResultHtml)
 	}

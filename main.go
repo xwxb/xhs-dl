@@ -1,14 +1,17 @@
 package main
 
 import (
+	"flag"
 	"github.com/gin-gonic/gin"
-	"github.com/xwxb/xhs-dl/consts"
 )
 
 func main() {
+	port := flag.String("port", "8080", "Port for the server to run on")
+	flag.Parse()
+
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*")
 
 	initRouters(r)
-	r.Run(consts.DefaultPort)
+	r.Run(":" + *port)
 }
