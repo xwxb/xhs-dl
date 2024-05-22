@@ -11,6 +11,12 @@ func WebUIIndex(c *gin.Context) {
 
 func ParseResultHtml(c *gin.Context) {
 	url := c.Query("orig")
-	imageUrls := parse.Scrape(url)
+	imageUrls, err := parse.RoboParse(url)
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
 	c.HTML(200, "result.html", imageUrls)
 }

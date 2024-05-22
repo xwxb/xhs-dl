@@ -7,7 +7,13 @@ import (
 
 func Parse(c *gin.Context) {
 	url := c.Query("orig")
-	imageUrls := parse.Scrape(url)
+	imageUrls, err := parse.RoboParse(url)
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
 	c.JSON(200, gin.H{
 		"imageUrls": imageUrls,
 	})

@@ -34,6 +34,34 @@ func internalHTTPGet(url string) (respBody io.ReadCloser, err error) {
 	return
 }
 
+func CheckUrl(str string) (err error) {
+	if len(str) == 0 {
+		err = fmt.Errorf("URL is empty")
+		return
+	}
+
+	if len(str) > 2048 {
+		err = fmt.Errorf("URL is too long")
+		return
+	}
+
+	if str[0] < 'a' || str[0] > 'z' {
+		err = fmt.Errorf("URL is not valid")
+		return
+	}
+	return
+}
+
+func fixUrl(url string) (fixedUrl string) {
+	// 不是 http 或 https 开头的 url，加上 https://
+	if url[:4] != "http" {
+		fixedUrl = "https://" + url
+	} else {
+		fixedUrl = url
+	}
+	return
+}
+
 func Scrape(url string) []string {
 	var imageUrls []string
 
@@ -57,4 +85,15 @@ func Scrape(url string) []string {
 	})
 
 	return imageUrls
+}
+
+func RoboParse(url string) (imageUrls []string, err error) {
+	err = CheckUrl(url)
+	if err != nil {
+		return
+	}
+
+	fixedUrl := fixUrl(url)
+	imageUrls = Scrape(fixedUrl)
+	return
 }
