@@ -49,6 +49,7 @@ func CheckUrl(str string) (err error) {
 		err = fmt.Errorf("URL is not valid")
 		return
 	}
+
 	return
 }
 
@@ -94,6 +95,8 @@ func RoboParse(url string) (imageUrls []string, err error) {
 	}
 
 	fixedUrl := fixUrl(url)
+	// if url.Parse(str).Scheme 也不是非得处理，好像不打挂就行
+
 	imageUrls = Scrape(fixedUrl)
 	return
 }
