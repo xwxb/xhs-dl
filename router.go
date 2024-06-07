@@ -6,8 +6,6 @@ import (
 )
 
 func initRouters(r *gin.Engine) {
-	r.Use(gin.Recovery())
-
 	r.GET("/webui", handler.WebUIIndex)
 	webui := r.Group("/webui")
 	{

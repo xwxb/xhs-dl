@@ -11,7 +11,7 @@ import (
 func internalHTTPGet(url string) (respBody io.ReadCloser, err error) {
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
-		log.Fatal(err)
+		panic(err) // 整个错误处理链路可能都要改，目前这样只是追求实用性，没有到设计层次
 	}
 
 	req.Header.Set("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36")
